@@ -1,0 +1,11 @@
+{
+  "name": "pluralsight",
+  "version": "1.0.0",
+  "description": "an app to extract the videos from the pluralsight application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "qeymax",
+  "license": "ISC"
+}

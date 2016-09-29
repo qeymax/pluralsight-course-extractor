@@ -1,0 +1,5 @@
+1 - Make sure both "Input" & "Output" are empty.
+2 - Copy Course files into the "Input" folder.
+3 - Copy the code from "script.js" and excute it on the web player of the course.
+4 - Copy the output of excution and paste it in the "list.JSON" file & make sure that's the only thing in the file.
+5- Run the app by using "node app.js" command in your terminal.
