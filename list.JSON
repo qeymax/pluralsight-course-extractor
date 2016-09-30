@@ -1,7 +1,0 @@
-{
-    "Introduction": ["Introduction", "WebStorm", "Grunt", "Command Line", "Web Frameworks"],
-    "Setting Up Your Project": ["Setting Up Grunt", "Understanding Modules", "Organization", "Choosing a Test Framework", "Flexing Git and Github"],
-    "Building a Registration Module": ["The User", "A Pattern Discussion", "Defining a Service", "Dealing With Data", "Saving the User Record", "Pyramid of Doom", "The EventEmitter"],
-    "Building an Authentication Module at Full Speed": ["Again, in Real Time", "Debugging Evented Code"],
-    "Integrating Our Module into a Web App": ["Creating an API With Index.js", "Plugging into a Web App", "Summary and Goodbye"]
-}
