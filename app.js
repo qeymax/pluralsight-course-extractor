@@ -78,7 +78,7 @@ prompt.get(["url"], function(err, result) {
                 }
                 var temp = JSON.parse(object);
                 list = temp.dic;
-                var cTitle = temp.title;
+                var cTitle = temp.title.replace(/[<>:"\/\\|?*]+/g, '');
                 var number = 0;
                 for (var key in list) {
                     number += list[key].length;
