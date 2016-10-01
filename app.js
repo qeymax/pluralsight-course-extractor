@@ -73,13 +73,16 @@ prompt.get(["url"], function(err, result) {
                 if (object == null) {
                     console.log("Failed to fetch information, please check url");
                 } else {
-                    console.log("Information fetched.");
-                    console.log("Working on files...");
+                    console.log("fetched Information.");
                     stat = "All Done";
                 }
                 var temp = JSON.parse(object);
                 list = temp.dic;
                 var cTitle = temp.title;
+                var number = 0;
+                for (var key in list) {
+                    number += list[key].length;
+                }
 
 
 
@@ -109,33 +112,40 @@ prompt.get(["url"], function(err, result) {
                 var files = fs.readdirSync(__dirname + "/Input");
                 files.sort(sortAlphaNum);
                 folders = files;
-                fs.mkdirSync(__dirname + "/Output/" + cTitle);
-                for (var key in list) {
-                    if (list.hasOwnProperty(key)) {
-                        if (folderCount.toString().length == 1) {
-                            strFolderCount = "0" + folderCount;
-                        } else {
-                            strFolderCount = folderCount;
-                        }
-                        fileCount = 1;
-                        fs.mkdirSync(__dirname + "/Output/" + cTitle + "/" + strFolderCount + " - " + key);
-                        for (var i = 0; i < list[key].length; i++) {
-                            if (fileCount.toString().length == 1) {
-                                strCount = "0" + fileCount;
-                            } else {
-                                strCount = fileCount;
-                            }
-                            var name = list[key][i].replace(/[<>:"\/\\|?*]+/g, '');
-                            var file = fs.readdirSync(__dirname + "/Input/" + folders[count]);
-                            fs.renameSync(__dirname + "/Input/" + folders[count] + "/" + file[0], __dirname + "/Output/" + cTitle + "/" + strFolderCount + " - " + key + "/" + strCount + " - " + name + ".mp4");
-                            count++;
-                            fileCount++;
-                        }
-                    }
-                    folderCount++;
-                }
+                if (number != folders.length) {
+                    console.log("Number of videos (" + number + ") doesn't match the number of files (" + folders.length + ") in the 'Input' folder");
+                    console.log("Aborted.");
+                } else {
 
-                console.log(stat);
+                    console.log("Working on files...");
+                    fs.mkdirSync(__dirname + "/Output/" + cTitle);
+                    for (var key in list) {
+                        if (list.hasOwnProperty(key)) {
+                            if (folderCount.toString().length == 1) {
+                                strFolderCount = "0" + folderCount;
+                            } else {
+                                strFolderCount = folderCount;
+                            }
+                            fileCount = 1;
+                            fs.mkdirSync(__dirname + "/Output/" + cTitle + "/" + strFolderCount + " - " + key);
+                            for (var i = 0; i < list[key].length; i++) {
+                                if (fileCount.toString().length == 1) {
+                                    strCount = "0" + fileCount;
+                                } else {
+                                    strCount = fileCount;
+                                }
+                                var name = list[key][i].replace(/[<>:"\/\\|?*]+/g, '');
+                                var file = fs.readdirSync(__dirname + "/Input/" + folders[count]);
+                                fs.renameSync(__dirname + "/Input/" + folders[count] + "/" + file[0], __dirname + "/Output/" + cTitle + "/" + strFolderCount + " - " + key + "/" + strCount + " - " + name + ".mp4");
+                                count++;
+                                fileCount++;
+                            }
+                        }
+                        folderCount++;
+                    }
+
+                    console.log(stat);
+                }
             }, function(e) {
                 // not called
             });
