@@ -127,7 +127,8 @@ prompt.get(["url"], function(err, result) {
                                 strFolderCount = folderCount;
                             }
                             fileCount = 1;
-                            fs.mkdirSync(__dirname + "/Output/" + cTitle + "/" + strFolderCount + " - " + key);
+                            var module = key.replace(/[<>:"\/\\|?*]+/g, '');
+                            fs.mkdirSync(__dirname + "/Output/" + cTitle + "/" + strFolderCount + " - " + module);
                             for (var i = 0; i < list[key].length; i++) {
                                 if (fileCount.toString().length == 1) {
                                     strCount = "0" + fileCount;
@@ -136,7 +137,7 @@ prompt.get(["url"], function(err, result) {
                                 }
                                 var name = list[key][i].replace(/[<>:"\/\\|?*]+/g, '');
                                 var file = fs.readdirSync(__dirname + "/Input/" + folders[count]);
-                                fs.renameSync(__dirname + "/Input/" + folders[count] + "/" + file[0], __dirname + "/Output/" + cTitle + "/" + strFolderCount + " - " + key + "/" + strCount + " - " + name + ".mp4");
+                                fs.renameSync(__dirname + "/Input/" + folders[count] + "/" + file[0], __dirname + "/Output/" + cTitle + "/" + strFolderCount + " - " + module + "/" + strCount + " - " + name + ".mp4");
                                 count++;
                                 fileCount++;
                             }
